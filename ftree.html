@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Interactive Folder Structure Builder - Enhanced with Drag & Drop
+    </title>
+    <link rel="stylesheet" href="public/css/index.css" />
+    <link rel="icon" href="public/imgs/favicon.ico" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header" role="banner">
+        <h1>Interactive Folder Structure Builder</h1>
+        <p>
+          Build hierarchical structures visually with drag & drop and export as
+          ASCII art
+        </p>
+        <div class="header-actions">
+          <button
+            class="header-btn"
+            onclick="app.clearAll()"
+            title="Clear all and start fresh"
+          >
+            Clear All
+          </button>
+          <button
+            class="header-btn"
+            onclick="app.copyPrompt()"
+            title="View YAML-alike format guide"
+          >
+            Get Prompt
+          </button>
+          <button
+            class="header-btn"
+            onclick="app.openImportModal()"
+            title="Import structure from YAML-alike format"
+          >
+            Import Structure
+          </button>
+        </div>
+      </header>
+
+      <main class="content" role="main">
+        <section class="panel" aria-label="Structure Editor">
+          <h2>
+            <span>Structure Editor</span>
+          </h2>
+          <div
+            class="tree-editor"
+            id="treeEditor"
+            role="tree"
+            aria-label="Folder tree structure"
+          ></div>
+          <button
+            class="btn-main"
+            onclick="app.addRootFolder()"
+            aria-label="Add new root folder"
+          >
+            + Add Root Folder
+          </button>
+        </section>
+
+        <section class="panel" aria-label="ASCII Preview">
+          <h2>
+            <span>ASCII Preview</span>
+          </h2>
+          <pre
+            class="ascii-preview"
+            id="asciiPreview"
+            role="region"
+            aria-label="ASCII tree representation"
+            aria-live="polite"
+          ></pre>
+          <button
+            class="copy-btn"
+            id="copyBtn"
+            onclick="app.copyToClipboard()"
+            aria-label="Copy ASCII tree to clipboard"
+          >
+            Copy to Clipboard
+          </button>
+        </section>
+      </main>
+    </div>
+    <div id="modalOverlay" class="modal-overlay" onclick="app.closeModal()">
+      <div class="modal-container" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <h2 id="modalTitle">Modal Title</h2>
+          <button
+            class="modal-close-btn"
+            onclick="app.closeModal()"
+            aria-label="Close modal"
+          >
+            ×
+          </button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-footer" id="modalFooter"></div>
+      </div>
+    </div>
+    <script src="public/js/index.js"></script>
+  </body>
+</html>
